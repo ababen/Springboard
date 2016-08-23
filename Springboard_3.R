@@ -9,4 +9,4 @@ View(refine_original)
 refine1 <- refine_original
 refine2 <- unite(refine1,full_address,c("address","city"), sep = ",",remove = TRUE)
 refine2 <- unite(refine1,full_address,c("address":"country"), sep = ",",remove = TRUE)
-
+refine3 <- gsub("tut","ot",company,ignore.case=T))
