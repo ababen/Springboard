@@ -20,3 +20,10 @@ refine3 # I don not understand why gsub placed the
 #Case insensitive replace:
 #  > gsub("tut","ot",x,ignore.case=T))
 #[1] "R otorial"
+
+# I am going to attemp the same with replace()
+
+if (refine1 != null) {
+  refine1 <- refine_original
+}
+replace(refine1, c(), values)
