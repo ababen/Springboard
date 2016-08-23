@@ -5,3 +5,4 @@ library("dplyr", lib.loc="~/R/win-library/3.3")
 library(devtools)
 refine2 <- unite(refine1,full_address,c("address","city"), sep = ",",remove = TRUE)
 refine2 <- unite(refine1,full_address,c("address":"country"), sep = ",",remove = TRUE)
+
