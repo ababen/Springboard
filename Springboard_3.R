@@ -26,4 +26,10 @@ refine3 # I don not understand why gsub placed the
 if (refine1 != null) {
   refine1 <- refine_original
 }
-replace(refine1, c(), values)
+replace(refine1, c("ak zo","akzo"), "akzo")
+
+# Cheated here and used Excel to get the below list. Wonder if there is any easy way of doing this with R.
+# c("ak zo", "akz0", "AKZO", "Akzo", "akzo")
+# c("philips", "Phillips", "phillps", "phlips", "phllips", "fillips")
+# c("Unilever", "unilver")
+# c("Van Houten", "Van Hausen")
