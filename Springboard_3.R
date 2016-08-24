@@ -23,10 +23,11 @@ refine3 # I don not understand why gsub placed the
 
 # I am going to attemp the same with replace()
 
-if (refine1 != null) {
-  refine1 <- refine_original
-}
-replace(refine1, c("ak zo","akzo"), "akzo")
+refine3 <- replace(refine1, c("ak zo", "akz0", "AKZO", "Akzo", "akzo"), "akzo")
+refine3 <- replace(refine3, c("philips", "Phillips", "phillps", "phlips", "phllips", "fillips"), "phillips")
+refine3 <- replace(refine3, c("Unilever", "unilver"), "uniliver")
+refine3 <- replace(refine3, c("Van Houten", "Van Hausen"), "van hausen")
+View(refine3)
 
 # Cheated here and used Excel to get the below list. Wonder if there is any easy way of doing this with R.
 # c("ak zo", "akz0", "AKZO", "Akzo", "akzo")
