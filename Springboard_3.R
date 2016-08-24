@@ -3,9 +3,10 @@
 install.packages("tidyr")
 install.packages("dplyr")
 install.packages("devtools")
+library(devtools)
 library("tidyr")
 library("dplyr")
-library(devtools)
+
 
 # Load dataset
 refine_original <- read.csv("/users/ababen/Springboard/refine_original.csv")
@@ -51,15 +52,18 @@ View(refine_cleaned)
 # q = Tablet
 
 #add a column for product categories
-df$product_categories <- c("")
+refine_split$product_categories <- c("")
 # rearrange columns in correct order
-df <- df[c("company", "product_code", "product_number", "product_categories", "address", "city", "country", "name")]
+
+refine_split <- refine_split[c("company", "product_code", "product_number", "product_categories", "full_address", "name")]
+
 #add values for new column: p = Smartphone, v = TV, x = Laptop, q = Tablet
-df$product_categories <- ifelse(df$product_code == "p", "Smartphone", 
-                                ifelse(df$product_code == "v", "TV", 
-                                       ifelse(df$product_code == "x", "Laptop", 
-                                              ifelse(df$product_code == "q", "Tablet", 
+refine_split$product_categories <- ifelse(refine_split$product_code == "p", "Smartphone", 
+                                ifelse(refine_split$product_code == "v", "TV", 
+                                       ifelse(refine_split$product_code == "x", "Laptop", 
+                                              ifelse(refine_split$product_code == "q", "Tablet", 
                                                      NA))))
+View(refine_split)
 
 # Add four binary (1 or 0) columns for company: company_philips, company_akzo, company_van_houten and company_unilever
 # Add four binary (1 or 0) columns for product category: product_smartphone, product_tv, product_laptop and product_tablet
