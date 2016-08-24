@@ -9,7 +9,7 @@ library("dplyr")
 
 
 # Load dataset
-refine_original <- read.csv("/users/ababen/Springboard/refine_original.csv")
+refine_original <- read.csv("refine_original.csv")
 
 # Backup dataset
 refine1 <- refine_original
@@ -74,3 +74,5 @@ write.csv(refine_cleaned, 'refine_clean.csv')
 # dplyr::rename(tb, y = year)
 # dplyr::arrange(mtcars, mpg)
 # separate(storms, date, c("y", "m", "d"))
+
+str(refine_split)
