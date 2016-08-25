@@ -4,6 +4,7 @@
 #install.packages("dplyr")
 #install.packages("devtools")
 #install.packages("stringr")
+
 library(devtools)
 library("tidyr")
 library("dplyr")
@@ -11,13 +12,11 @@ library("dplyr")
 
 
 # Load dataset
-ds_original <- read.csv("ds_original.csv")
-
-# Backup dataset
+ds_original <- read.csv("refine_original.csv")
 tbl_df(ds_original)
 
 #Combine address fields
-ds_fulladdress <- unite(ds1,full_address,c(address:country), sep = ", ",remove = TRUE)
+ds_cleaned <- unite(ds_original,full_address,c(address:country), sep = ", ",remove = TRUE)
 
 # Please run these two steps together to see the problem.
 # ds_temp <- gsub("ak zo","akzo",ds_fulladdress,ignore.case=T)
@@ -26,16 +25,20 @@ ds_fulladdress <- unite(ds1,full_address,c(address:country), sep = ", ",remove =
 library(stringr)
 
 #cleaning akzo
-
-# ds_fulladdress$company <- str_replace(ds_fulladdress$company,"k\\sz","kz")
-# ds_fulladdress$company <- str_replace(ds_fulladdress$company,"z[0-9]","zo")
+ds_cleaned$company <- tolower(ds_cleaned$company)
+ds_cleaned$company <- str_replace(ds_cleaned$company,"k\\sz","kz")
+ds_cleaned$company <- str_replace(ds_cleaned$company,"z[0-9]","zo")
+ds_cleaned$company <- str_replace(ds_cleaned$company,"z[0-9]","zo")
+ds_cleaned$company <- str_replace(ds_cleaned$company,"z[0-9]","zo")
 
 # I am going to attemp the same with replace()
-# ds_cleaned$company <- tolower(ds_cleaned$company)
-# ds_cleaned$company <- replace(ds_fulladdress$company, c("ak zo", "akz0", "AKZO", "Akzo", "akzo"), "akzo")
-# ds_cleaned$company <- replace(ds_fulladdress$company, c("philips", "Phillips", "phillps", "phlips", "phllips", "fillips"), "phillips")
-# ds_cleaned$company <- replace(ds_fulladdress$company, c("Unilever", "unilver"), "uniliver")
-# ds_cleaned$company <- replace(ds_fulladdress$company, c("Van Houten", "Van Hausen"), "van houten")
+ds_cleaned$company <- tolower(ds_cleaned$company)
+ds_cleaned$company <- replace(ds_cleaned$company, c("ak zo", "akz0", "AKZO", "Akzo", "akzo"), "akzo")
+ds_cleaned$company <- replace(ds_cleaned$company, c("philips", "Phillips", "phillps", "phlips", "phllips", "fillips"), "phillips")
+ds_cleaned$company <- replace(ds_cleaned$company, c("Unilever", "unilver"), "uniliver")
+ds_cleaned$company <- replace(ds_cleaned$company, c("Van Houten", "Van Hausen"), "van houten")
+View(ds_cleaned)
+
 
 ds_cleaned <- separate(ds_cleaned, "Product.code...number", c("product_code", "product_number"),"-")
 
@@ -56,7 +59,7 @@ View(ds_cleaned)
 # Add four binary (1 or 0) columns for product category: product_smartphone, product_tv, product_laptop and product_tablet
 
 # export ds_clean.csv
-write.csv(ds_cleaned, 'ds_clean.csv')
+write.csv(ds_cleaned, 'refined_clean.csv')
 
 # dplyr::rename(tb, y = year)
 # dplyr::arrange(mtcars, mpg)
