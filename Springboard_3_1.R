@@ -3,6 +3,7 @@ library(devtools)
 library("tidyr")
 library("dplyr")
 library(stringr)
+
 # Load dataset
 ds_original <- read.csv("refine_original.csv")
 tbl_df(ds_original)
@@ -11,15 +12,20 @@ tbl_df(ds_original)
 ds_cleaned <- unite(ds_original,full_address,c(address:country), sep = ", ",remove = TRUE)
 
 # Standardizing company names
-# ds_cleaned$company <- str_replace(ds_cleaned$company,"k\\sz","kz")
-# ds_cleaned$company <- str_replace(ds_cleaned$company,"z[0-9]","zo")
-
-ds_cleaned <- ds_cleaned %>% 
-replace(ds_cleaned$company == c("ak zo", "akz0"), "akzo") %>%
-replace(ds_cleaned$company == c("phillips", "phillps", "phlips", "phllips"), "philips") %>%
-replace(ds_cleaned$company == c("uniliver"), "unilever") %>%
-replace(ds_cleaned$company == c("Van Hausen"), "van houten")
 ds_cleaned$company <- tolower(ds_cleaned$company)
+ds_cleaned$company <- str_replace(ds_cleaned$company,"k\\sz","kz")
+ds_cleaned$company <- str_replace(ds_cleaned$company,"z[0-9]","zo")
+ds_cleaned$company <- str_replace(ds_cleaned$company,"f","ph")
+ds_cleaned$company <- str_replace(ds_cleaned$company,"unilver","unilever")
+ds_cleaned$company <- str_replace(ds_cleaned$company,"philips","phillips")
+
+
+# ds_cleaned <- ds_cleaned %>% 
+# replace(ds_cleaned$company == c("ak zo", "akz0"), "akzo") %>%
+# replace(ds_cleaned$company == c("phillips", "phillps", "phlips", "phllips"), "philips") %>%
+# replace(ds_cleaned$company == c("uniliver"), "unilever") %>%
+# replace(ds_cleaned$company == c("Van Hausen"), "van houten")
+
 
 # Seperate Product Code & Number
 ds_cleaned <- separate(ds_cleaned, "Product.code...number", c("product_code", "product_number"),"-")
