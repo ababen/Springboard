@@ -7,6 +7,12 @@ library(stringr)
 X_test <- read.table("~/R/Springboard/Springboard/Ex 3/dataset/test/X_test.txt", quote="\"", comment.char="")
 X_train <- read.table("~/R/Springboard/Springboard/Ex 3/dataset/train/X_train.txt", quote="\"", comment.char="")
 
+y_test <- read.table("~/R/Springboard/Springboard/Ex 3/dataset/test/y_test.txt", quote="\"", comment.char="")
+y_train <- read.table("~/R/Springboard/Springboard/Ex 3/dataset/train/y_train.txt", quote="\"", comment.char="")
+
+subject_test <- read.table("~/R/Springboard/Springboard/Ex 3/dataset/test/subject_test.txt", quote="\"", comment.char="")
+subject_train <- read.table("~/R/Springboard/Springboard/Ex 3/dataset/train/subject_train.txt", quote="\"", comment.char="")
+
 #1. Merges the training and the test sets to create one data set.
 
 
