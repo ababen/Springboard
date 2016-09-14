@@ -16,16 +16,8 @@ ds_cleaned$company <- tolower(ds_cleaned$company)
 ds_cleaned$company <- str_replace(ds_cleaned$company,"k\\sz","kz")
 ds_cleaned$company <- str_replace(ds_cleaned$company,"z[0-9]","zo")
 ds_cleaned$company <- str_replace(ds_cleaned$company,"f","ph")
+ds_cleaned$company <- str_replace(ds_cleaned$company,"^ph[a-z]+ps","philips")
 ds_cleaned$company <- str_replace(ds_cleaned$company,"unilver","unilever")
-ds_cleaned$company <- str_replace(ds_cleaned$company,"philips","phillips")
-
-
-# ds_cleaned <- ds_cleaned %>% 
-# replace(ds_cleaned$company == c("ak zo", "akz0"), "akzo") %>%
-# replace(ds_cleaned$company == c("phillips", "phillps", "phlips", "phllips"), "philips") %>%
-# replace(ds_cleaned$company == c("uniliver"), "unilever") %>%
-# replace(ds_cleaned$company == c("Van Hausen"), "van houten")
-
 
 # Seperate Product Code & Number
 ds_cleaned <- separate(ds_cleaned, "Product.code...number", c("product_code", "product_number"),"-")
