@@ -1,4 +1,20 @@
+library(devtools)
+library("tidyr")
+library("dplyr")
+library(stringr)
+
+# Load datasets
+X_test <- read.table("~/R/Springboard/Springboard/Ex 3/dataset/test/X_test.txt", quote="\"", comment.char="")
+X_train <- read.table("~/R/Springboard/Springboard/Ex 3/dataset/train/X_train.txt", quote="\"", comment.char="")
+
 #1. Merges the training and the test sets to create one data set.
+
+
+X_test_train <- X_test + X_train # This doesnt work.
+
+tbl_df(X_test)
+tbl_df(X_train)
+View(X_test)
 
 #2. Extracts columns containing mean and standard deviation for each measurement (Hint: Since some feature/column names are repeated, you may need to use the make.names() function in R)
 
