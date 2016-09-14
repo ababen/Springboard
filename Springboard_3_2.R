@@ -35,3 +35,4 @@ ds$has_cabin_number <- ifelse(ds$cabin=="", 0, 1)
 # Include your code, the original data as a CSV file titanic_original.csv, and the cleaned up data as a CSV file called titanic_clean.csv.
 
 View(ds)
+write.csv(ds, 'titanic_clean.csv')
